@@ -1,9 +1,13 @@
 const express = require("express");
-const app = express();
+const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 
+const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Enable CORS for all origins (or specify allowed origins)
+app.use(cors());
 
 // Middleware to parse JSON
 app.use(express.json());
