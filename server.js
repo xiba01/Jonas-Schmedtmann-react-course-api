@@ -1,14 +1,16 @@
 const jsonServer = require("json-server");
+const express = require("express");
+
+const app = express();
+
+const worldwiseRouter = jsonServer.router("worldwise-api/cities.json");
+
+app.use("/worldwise", worldwiseRouter);
+
 const cors = require("cors");
-
-const server = jsonServer.create();
-const router = jsonServer.router("worldwise-api/cities.json");
-const middlewares = jsonServer.defaults();
-
-server.use(middlewares);
-server.use(router);
+app.use(cors());
 
 const PORT = process.env.PORT || 9000;
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`JSON Server is running on port ${PORT}`);
 });
